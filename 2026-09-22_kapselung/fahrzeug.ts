@@ -11,7 +11,10 @@ export class Fahrzeug {
     kmStand: number,
     maxGeschwindigkeit: number,
   ) {
-    // TODO HÜ: kmStand darf nicht negativ sein — Fail-Fast im Konstruktor.
+    // Invariante fail-fast: kmStand darf nicht negativ sein
+    if (kmStand < 0) {
+      throw new Error(`kmStand darf nicht negativ sein (war ${kmStand})`);
+    }
     this.marke = marke;
     this._kmStand = kmStand;
     this.maxGeschwindigkeit = maxGeschwindigkeit;
