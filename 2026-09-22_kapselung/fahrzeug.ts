@@ -30,8 +30,15 @@ export class Fahrzeug {
     return this._geschwindigkeit;
   }
 
-  // TODO HÜ: wirft, wenn v < 0 oder v > maxGeschwindigkeit.
-  setGeschwindigkeit(v: number): void {}
+  // wirft, wenn v < 0 oder v > maxGeschwindigkeit.
+  setGeschwindigkeit(v: number): void {
+    if (v < 0 || v > this.maxGeschwindigkeit) {
+      throw new Error(
+        `Geschwindigkeit ungültig: 0 <= v <= ${this.maxGeschwindigkeit} erwartet (war ${v})`,
+      );
+    }
+    this._geschwindigkeit = v;
+  }
 
   // TODO HÜ: erhöht kmStand um geschwindigkeit * stunden.
   fahre(stunden: number): void {}
