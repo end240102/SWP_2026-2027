@@ -40,8 +40,13 @@ export class Fahrzeug {
     this._geschwindigkeit = v;
   }
 
-  // TODO HÜ: erhöht kmStand um geschwindigkeit * stunden.
-  fahre(stunden: number): void {}
+  // erhöht kmStand um geschwindigkeit * stunden.
+  fahre(stunden: number): void {
+    if (stunden < 0) {
+      throw new Error(`Stunden dürfen nicht negativ sein (war ${stunden})`);
+    }
+    this._kmStand += this._geschwindigkeit * stunden;
+  }
 
   toString(): string {
     return `${this.marke} (${this._kmStand} km, fährt ${this._geschwindigkeit}/${this.maxGeschwindigkeit} km/h)`;
